@@ -69,15 +69,15 @@ def annot_block_process(
         for _, r in annotation_file.iterrows()
     ]
     mode_info = pd.DataFrame(mode_info).drop_duplicates().reset_index(drop=True)
+    print(mode_info)
 
     selection_table = None
-    # for audio in tqdm(audio_files):
-    #     annots_for_sample = annotation_file[
-    #         annotation_file.filename == os.path.basename(audio)
-    #     ]
-
-    #     for annot_fn in annots_for_sample.iterrows():
-    #         pass
+    for idx, row in tqdm(mode_info.iterrows(), total=len(mode_info)):
+        annots_for_sample = annotation_file[
+            annotation_file.filename == os.path.basename(row.audio_fp)
+        ]
+        print(annots_for_sample)
+        break
 
     return mode_info, selection_table
 
